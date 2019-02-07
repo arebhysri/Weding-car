@@ -1,0 +1,23 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "myweddingcar": {
+    "host": "localhost",
+    "port": 3306,
+    "url": "",
+    "database": "myweddingcar",
+    "password": "arebhy",
+    "name": "myweddingcar",
+    "user": "root",
+    "connector": "mysql"
+  },
+  "car_photo": {
+    "name": "car_photo",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "./files",
+    "maxFileSize": "10485760"
+  }
+}

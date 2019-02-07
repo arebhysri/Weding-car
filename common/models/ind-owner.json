@@ -1,0 +1,51 @@
+{
+  "name": "Ind_owner",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "OwnerName": {
+      "type": "string",
+      "required": true
+    },
+    "OwnerAddress": {
+      "type": "string"
+    },
+    "NICcopy": {
+      "type": "string"
+    },
+    "Vehicle_cpy": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "NIC_Pass_no": {
+      "type": "string"
+    },
+    "DrivingLiNo": {
+      "type": "string",
+      "required": true
+    },
+    "Drive_Li_cpy": {
+      "type": "string"
+    },
+    "Mobile_No": {
+      "type": "string"
+    },
+    "LandPh_No": {
+      "type": "string",
+      "required": true
+    },
+    "emailAdd": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,64 @@
+{
+  "name": "car",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "brand": {
+      "type": "string",
+      "required": true
+    },
+    "model": {
+      "type": "string",
+      "required": true
+    },
+    "color": {
+      "type": "string",
+      "required": true
+    },
+    "carType": {
+      "type": "string",
+      "required": true
+    },
+    "regiNo": {
+      "type": "string",
+      "required": true
+    },
+    "revenue_li_cpy": {
+      "type": "string",
+      "required": false
+    },
+    "revenue_li_ex_date": {
+      "type": "date",
+      "required": true
+    },
+    "ins_cpy": {
+      "type": "string",
+      "required": false
+    },
+    "ins_exp_date": {
+      "type": "date",
+      "required": true
+    },
+    "car_photo": {
+      "type": "string",
+      "required": false
+    },
+    "ownerNICId_companyName": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "bookingCar": {
+      "type": "hasMany",
+      "model": "BookingCar",
+      "foreignKey": "CarId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

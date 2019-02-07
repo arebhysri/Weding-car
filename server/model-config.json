@@ -1,0 +1,74 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "myweddingcar"
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": false
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "car": {
+    "dataSource": "myweddingcar",
+    "public": true
+  },
+  "companyBankDetail": {
+    "dataSource": "myweddingcar",
+    "public": true
+  },
+  "driver": {
+    "dataSource": "myweddingcar",
+    "public": true
+  },
+  "fleetOwner": {
+    "dataSource": "myweddingcar",
+    "public": true
+  },
+  "Ind_owner": {
+    "dataSource": "myweddingcar",
+    "public": true
+  },
+  "ownerBankDetail": {
+    "dataSource": "myweddingcar",
+    "public": true
+  },
+  "attachmentBank": {
+    "dataSource": "car_photo",
+    "public": true
+  },
+  "UserLogin": {
+    "dataSource": "myweddingcar",
+    "public": true
+  },
+  "BookingCar": {
+    "dataSource": "myweddingcar",
+    "public": true
+  }
+}

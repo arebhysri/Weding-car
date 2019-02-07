@@ -1,0 +1,63 @@
+{
+  "name": "BookingCar",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "CarType": {
+      "type": "string",
+      "required": true
+    },
+    "startDate": {
+      "type": "date",
+      "required": true
+    },
+    "endDate": {
+      "type": "date",
+      "required": true
+    },
+    "CxName": {
+      "type": "string",
+      "required": true
+    },
+    "CxNIC": {
+      "type": "string",
+      "required": true
+    },
+    "CxContactNumber": {
+      "type": "string",
+      "required": true
+    },
+    "CxEmailAdd": {
+      "type": "string"
+    },
+    "Amount": {
+      "type": "number",
+      "required": true
+    },
+    "Location": {
+      "type": "string",
+      "required": true
+    },
+    "PayMtd": {
+      "type": "string",
+      "required": true
+    },
+    "CarId": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "car": {
+      "type": "belongsTo",
+      "model": "car",
+      "foreignKey": "CarId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}

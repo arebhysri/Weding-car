@@ -1,0 +1,37 @@
+{
+  "name": "ownerBankDetail",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "accountName": {
+      "type": "string",
+      "required": true
+    },
+    "bankName": {
+      "type": "string",
+      "required": true
+    },
+    "branch": {
+      "type": "string"
+    },
+    "accountNo": {
+      "type": "string",
+      "required": true
+    },
+    "bankBookCpy": {
+      "type": "string",
+      "required": true
+    },
+    "ownerName": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

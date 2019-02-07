@@ -1,0 +1,108 @@
+//////////////////////////////////////////////////////////////////
+to connect database
+<?php
+$cn=mysqli_connect("localhost","root","","11toeleven");
+// to Check connection
+if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+?>
+////////////////////////////////////////////////////////////
+store data to database
+
+1) create the form for get data
+
+<form method="POST" class="w3margin" enctype="multipart/form-data">
+  <input class="form-control" type="text" name="name" required><br>
+  <input class="form-control" type="text" name="phnumber" required><br>
+  <input class="form-control" type="text" name="address" required><br>
+  <input type="submit" name="submit" class="btn btn-primary" value="submit">
+</form>
+
+2) get the method from form to store database
+
+if (isset($_POST['submit'])) {
+  $fname=$_POST['name'];
+  $phnumber=$_POST['phnumber'];
+  $address=$_POST['address'];
+
+  $fname=mysqli_real_escape_string($cn,$fname);
+  $phnumber=mysqli_real_escape_string($cn,$phnumber);
+  $address=mysqli_real_escape_string($cn,$address);
+
+  if ($fname && $phnumber && $address ) {
+    $q1=mysqli_query($cn,"INSERT INTO CXDETAIL (name,address,phnum) VALUES ('$fname','$address','$phnumber')");
+    if ($q1) {
+      echo "<p bgcolor='green'>"."Posted"."</p>";
+    }else{
+      echo "<p bgcolor='red'>"."ERROR"."</p>";
+    }
+  }else{
+    echo "Missing data";
+  }
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+
+Read the data from database 
+
+$sql1="SELECT * FROM CXDETAIL";
+$result1=mysqli_query($cn,$sql1);
+while($row3 = mysqli_fetch_array($result1)){
+
+echo "$row3['name']";
+echo "$row3['phnum']";
+echo "$row3['address']";
+
+}
+
+///////////////////////////////////////////////////////////////////////////////////////
+
+Delete the data from database for perticular data
+
+if( isset($_GET['e']) ){
+  $id = $_GET['e'];
+  $sql = "DELETE FROM CXDETAIL WHERE id='$id'";
+  $res= mysqli_query($cn,$sql) or die("Could not update".mysqli_error());
+  echo "<meta http-equiv='refresh' content='0;url=addcxname.php'>";
+
+$cn->close();
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////
+
+update the data to database for particular data
+
+1) get the details from databse based on which data going to update
+
+if(isset($_GET['e'])){
+  $id = $_GET['e'];
+  $res= mysqli_query($cn,"SELECT * FROM CXDETAIL WHERE id='$id'");
+  $row2= mysqli_fetch_array($res);
+}
+
+2) transefer those get data to input field 
+
+<form  method="POST" class="w3margin" enctype="multipart/form-data">
+	<input class="form-control" type="text" name="name" value="<?php echo $row2['name']; ?>">
+	<input class="form-control" type="text" name="phnumber" value="<?php echo $row2['phnum']; ?>">
+	<input class="form-control" type="text" name="address" value="<?php echo $row2['address']; ?>">
+	<input type="hidden" name="id" value="<?php echo $row2['id']; ?>">
+	<input type="submit" name="submit" class="btn btn-primary" value="submit">
+</form>
+
+3> after update the detail the click on submit button, 
+
+if (isset($_POST['submit'])) {
+  $fname=$_POST['name'];
+  $phnumber=$_POST['phnumber'];
+  $address=$_POST['address'];
+
+  $sql= "UPDATE CXDETAIL SET id='$id',name='$fname',phnum='$phnumber',address='$address' WHERE id='$id'";
+  $res= mysqli_query($cn,$sql)or die("Could not update".mysqli_error());
+  echo "<meta http-equiv='refresh' content='0;url=add3rdcat.php'>";
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+

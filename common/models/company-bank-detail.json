@@ -1,0 +1,38 @@
+{
+  "name": "companyBankDetail",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "companyName": {
+      "type": "string",
+      "required": true
+    },
+    "AccountName": {
+      "type": "string",
+      "required": true
+    },
+    "bankName": {
+      "type": "string",
+      "required": true
+    },
+    "bankBookCpy": {
+      "type": "string",
+      "required": false
+    },
+    "branch": {
+      "type": "string",
+      "required": true
+    },
+    "accountNo": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}

@@ -1,0 +1,42 @@
+{
+  "name": "fleetOwner",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "companyName": {
+      "type": "string",
+      "required": true
+    },
+    "OwnerName": {
+      "type": "string",
+      "required": true
+    },
+    "contactNo": {
+      "type": "string",
+      "required": true
+    },
+    "city": {
+      "type": "string"
+    },
+    "landPhoneNo": {
+      "type": "string",
+      "required": true
+    },
+    "emailAddress": {
+      "type": "string"
+    },
+    "bussinessRegiNo": {
+      "type": "string"
+    },
+    "bussinessRegiCpy": {
+      "type": "string"
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
