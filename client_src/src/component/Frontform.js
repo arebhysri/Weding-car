@@ -1,9 +1,11 @@
 import React from 'react';
-import { Form, FormGroup,Button } from 'reactstrap';
+import {Input, Form, FormGroup,Button } from 'reactstrap';
 import { Select, Icon } from 'antd';
 import { DatePicker } from 'antd';
 import moment from 'moment';
 import { Row, Col } from 'antd';
+import PlacesAutocomplete from 'react-places-autocomplete';
+import {geocodeByAddress,geocodeByPlaceId,getLatLng} from 'react-places-autocomplete';
 
 const RangePicker = DatePicker.RangePicker;
 const Option = Select.Option;
@@ -17,8 +19,21 @@ export default class Frontform extends React.Component {
 		this.state = {
       location : '',
       carType:'',
+      address:''
 		}
-	}
+  }
+  
+  handleChange = address => {
+    this.setState({ address });
+  };
+
+  handleSelect = address => {
+    geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => console.log('Success', latLng))
+      .catch(error => console.error('Error', error));
+  };
+
   handleSizeChange = (e) => {
     this.setState({ size: e.target.value });
   }
@@ -62,40 +77,44 @@ export default class Frontform extends React.Component {
       <div >
         <Form inline >
           <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-              <Select size={"large"}
-                showSearch
-                style={{ width: 200 }}
-                placeholder="Pick your Loacation"
-                optionFilterProp="children"
-                onChange={this.handleChange2}
-                filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
-              >
-                <Option value="Ampara">Ampara</Option>
-                <Option value="Anuradhapura">Anuradhapura</Option>
-                <Option value="Badulla">Badulla</Option>
-                <Option value="Baticaloa">Baticaloa</Option>
-                <Option value="Colombo">Colombo</Option>
-                <Option value="Galle">Galle</Option>
-                <Option value="Gampaha">Gampaha</Option>
-                <Option value="Hambantota">Hambantota</Option>
-                <Option value="Jaffna">Jaffna</Option>
-                <Option value="Kalutara">Kalutara</Option>
-                <Option value="Kandy">Kandy</Option>
-                <Option value="Kegalle">Kegalle</Option>
-                <Option value="Kilinochchi">Kilinochchi</Option>
-                <Option value="Kurunegala">Kurunegala</Option>
-                <Option value="Mannar">Mannar</Option>
-                <Option value="Matale">Matale</Option>
-                <Option value="Matara">Matara</Option>
-                <Option value="Moneragala">Moneragala</Option>
-                <Option value="Mullaitivu">Mullaitivu</Option>
-                <Option value="Nuwara Eliya">Nuwara Eliya</Option>
-                <Option value="Polonnaruwa">Polonnaruwa</Option>
-                <Option value="Puttalam">Puttalam</Option>
-                <Option value="Ratnapura">Ratnapura</Option>
-                <Option value="Trincomalee">Trincomalee</Option>
-                <Option value="Vavuniya">Vavuniya</Option>
-              </Select>
+              <PlacesAutocomplete
+              value={this.state.address}
+              onChange={this.handleChange}
+              onSelect={this.handleSelect}
+            >
+        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+          <div>
+            <Input
+              {...getInputProps({
+                placeholder: 'Search Places ...',
+                className: 'location-search-input',
+              })}
+            />
+            <div className="autocomplete-dropdown-container">
+              {loading && <div>Loading...</div>}
+              {suggestions.map(suggestion => {
+                const className = suggestion.active
+                  ? 'suggestion-item--active'
+                  : 'suggestion-item';
+                // inline style for demonstration purpose
+                const style = suggestion.active
+                  ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                return (
+                  <div
+                    {...getSuggestionItemProps(suggestion, {
+                      className,
+                      style,
+                    })}
+                  >
+                    <span>{suggestion.description}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </PlacesAutocomplete>
           </FormGroup>
           <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <RangePicker size={"large"}
